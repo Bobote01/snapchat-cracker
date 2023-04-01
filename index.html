@@ -59,37 +59,38 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Débloquer le compte</h1>
-      <label for="username">Nom d'utilisateur :</label>
-      <input type="text" id="username" name="username">
-      <button id="unlockBtn">Débloquer</button>
-      <div id="loader" class="loader"></div>
-    </div>
+ 
+<html>
+  <head>
+    <title>Offres Ayet Studios</title>
+  </head>
+  <body>
+    <h1>Offres Ayet Studios</h1>
+    <ul id="offers"></ul>
     <script>
-      const unlockBtn = document.getElementById('unlockBtn');
-      const loader = document.getElementById('loader');
+      // Remplacez "VOTRE_API_KEY" par votre propre clé API Ayet Studios
+      var api_key = "6aa12b1c383c9214147518b169252a60";
+      var offers_url = "https://api.ayetstudios.com/api/offers";
+      var offers_div = document.getElementById("offers");
 
-      unlockBtn.addEventListener('click', () => {
-        loader.style.display = 'block';
-        setTimeout(() => {
-          loader.style.display = 'none';
-          alert('Compte débloqué !');
-        }, 3000);
-      });
+      // Fonction pour récupérer les offres depuis l'API et les afficher sur la page
+      function displayOffers() {
+        // Effectuez une requête GET à l'API pour récupérer les offres
+        fetch(`${offers_url}?apikey=${api_key}`)
+          .then(response => response.json())
+          .then(data => {
+            // Pour chaque offre, créez un élément de liste pour l'afficher sur la page
+            data.offers.forEach(offer => {
+              var offer_li = document.createElement("li");
+              offer_li.innerHTML = `${offer.offer_name} - ${offer.offer_reward}`;
+              offers_div.appendChild(offer_li);
+            });
+          })
+          .catch(error => console.log(error));
+      }
+
+      // Appellez la fonction pour afficher les offres sur la page
+      displayOffers();
     </script>
   </body>
 </html>
-
-<script>
-  const unlockBtn = document.getElementById('unlockBtn');
-  const loader = document.getElementById('loader');
-
-  unlockBtn.addEventListener('click', () => {
-    loader.style.display = 'block';
-    setTimeout(() => {
-      loader.style.display = 'none';
-      window.location.href = 'https://api.adgem.com/v1/wall?appid=25326&playerid=123456789';
-    }, 1000);
-  });
-</script>
